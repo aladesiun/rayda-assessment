@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from '../components/navbar';
 import Hero from '../components/hero';
 import ItemCard from '../components/item-card';
@@ -7,15 +7,13 @@ import toast from 'react-hot-toast';
 import Skeleton from './skeleton';
 const Welcome = () => {
     // Retrieve items from Api
-    const { data, isLoading, error, isError, isSuccess} =  useGetItemsQuery();
-    console.log(data);
-
+    const { data, isLoading, error, isError} =  useGetItemsQuery();
     if (error) {
         toast.error(error.error)
     }
-    // if (isSuccess) toast.success('Items fetched successfully');/
+
     return (
-        <div className="App max-w-[1400px] mx-auto px-3 ">
+        <div className="App max-w-[1390px] mx-auto px-3 mb-5">
             <Navbar />
             <Hero />
             <div className='border border-b border-border   drop-shadow rounded-lg p-4'>
@@ -25,7 +23,6 @@ const Welcome = () => {
                         <span className='text-xs whitespace-nowrap  p-1'>View Auction</span>
                     </div>
                 </div>
-               
                 {isLoading &&  <Skeleton/> }
                 {isError && <p className='text-red-500 text-center my-3'>Opps, Unable to get items please try again</p>}
                 <div className='grid gap-4 mt-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2'>
